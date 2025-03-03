@@ -67,6 +67,7 @@ function mostFrequentElement(array) {
 }
 // console.log(mostFrequentElement([1, 2, 3, 4,2,3,4,1,2,3,1,2,3,4,4,2,3,3,2,3,3]))
 // 7️⃣ Find Two Numbers in a Sorted Array That Sum to K.
+// @ts-ignore
 function twoSum(array, k) {
     const map = {};
     for (let i = 0; i < array.length; i++) {
@@ -101,6 +102,7 @@ function twoSumClosest(array, k) {
 }
 // console.log(twoSumClosest([2,4,2,6,7,8],4))
 // 9️⃣ Find the Squared Sorted Array (Sort Squared Elements Efficiently).
+// @ts-ignore
 function squaredSortedArray(array) {
     if (array[0] >= 0) {
         for (let i = 0; i < array.length; i++) {
