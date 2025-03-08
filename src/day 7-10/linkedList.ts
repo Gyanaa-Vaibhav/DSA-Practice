@@ -117,6 +117,7 @@ class LinkedList<T>{
      * @param {number} index - The position to insert the new value.
      * @param {T} value - The value to insert.
      */
+    // 1️⃣ Insert a Node at a Specific Position → Insert a node at the given index.
     addAtIndex(index:number,value:T) {
         if(index <= 0){
             console.warn("Please use prepend while adding at index 0")
@@ -156,6 +157,7 @@ class LinkedList<T>{
      * @param {T} value - The value to search for in the list.
      * @returns {number | false} The index of the value if found, otherwise `false`.
      */
+    // 4️⃣ Search for a Value in a Linked List → Return true if found, else false.
     getIndex(value:T): number | false {
         let index = 0;
         let temp = this.head
@@ -199,7 +201,7 @@ class LinkedList<T>{
     }
 
     getFullList() {
-        console.log(this.head)
+        // console.log(this.head)
         return this.head
     }
 
@@ -217,8 +219,8 @@ class LinkedList<T>{
      * returns the length of the LinkedList
      * */
     getLength() {
-        console.log(`Length: ${this.length}`)
-        return length
+        // console.log(`Length: ${this.length}`)
+        return this.length
     }
 
     printList() {
@@ -232,6 +234,46 @@ class LinkedList<T>{
         console.log(string)
         return string
     }
+
+    // 3️⃣ Find Length of a Linked List → Count the number of nodes.
+    findLength() {
+        let length = 0;
+        let temp = this.head;
+        while (temp !== null){
+            length++;
+            temp = temp.next
+        }
+        return length
+    }
+
+    // 6️⃣ Remove Duplicates from a Sorted Linked List → Given a sorted linked list, remove duplicates.
+    removeDuplicates() {
+        let temp = this.head
+        while (temp.next !== null){
+            if (temp.value === temp.next.value) {
+                temp.next = temp.next.next
+                this.length--
+            }else{
+                temp = temp.next
+            }
+        }
+    }
+
+    // 5️⃣ Reverse a Singly Linked List (Without Pointers, Just Change next)
+    reverse() {
+        if(this.length <= 1) return this.head
+        let temp = this.head
+        this.head = this.tail
+        this.tail = temp
+        let before = null
+        let after = temp.next
+        while (temp !== null) {
+            after = temp.next // Pushing pointer one step
+            temp.next = before // Flipping the Pointer to null
+            before = temp // Moving before to current position
+            temp = after // Moving pointer to after +1 step
+        }
+    }
 }
 
 const linkedList = new LinkedList<number>(1)
@@ -240,9 +282,11 @@ linkedList.append(2)
 linkedList.append(3)
 linkedList.append(4)
 // linkedList.setValue(1,3)
-linkedList.printList()
+// linkedList.reverse()
+// linkedList.printList()
+// console.log(linkedList.findLength())
 // console.log(linkedList.getValue(0))
-linkedList.addAtIndex(4,5)
+// linkedList.addAtIndex(4,5)
 // linkedList.printList()
 // console.log(linkedList.removeTail())
 // console.log(linkedList.removeHead())
