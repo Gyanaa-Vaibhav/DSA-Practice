@@ -1,3 +1,4 @@
+// @ts-ignore
 class NodePointer {
     constructor(value) {
         this.next = null;
