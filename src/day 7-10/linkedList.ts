@@ -3,6 +3,7 @@ type NodeType = {
     next : NodeType | null
 }
 
+// @ts-ignore
 class NodePointer<T>{
     value:T
     next = null
