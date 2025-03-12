@@ -48,11 +48,11 @@ class CircularLinkedList {
         }
         string += '\n↑ ';
         for (let i = 0; i < this.length; i++) {
-            if (i + 1 === this.length) {
-                string += '<-< ';
+            if (i === 0) {
+                string += '<- ';
             }
-            else {
-                string += '<-';
+            else if (i + 1 !== this.length) {
+                string += '  <- ';
             }
         }
         string += '↓';
@@ -65,6 +65,9 @@ circularLinkedList.prepend(0);
 circularLinkedList.append(2);
 circularLinkedList.append(3);
 circularLinkedList.append(4);
+circularLinkedList.append(5);
+circularLinkedList.append(6);
+circularLinkedList.append(7);
 circularLinkedList.printList();
 // console.log(circularLinkedList.tail)
 // console.log(circularLinkedList.head === circularLinkedList.tail)
