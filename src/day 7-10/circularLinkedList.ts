@@ -22,8 +22,10 @@ class CircularLinkedList<T>{
     }
 
     append(value:T) {
-        this.tail = new NodePointer<T>(value)
-        this.tail.next = this.head
+        const newNode = new NodePointer<T>(value)
+        newNode.next = this.head
+        this.tail.next = newNode
+        this.tail = newNode
         this.length++;
         return
     }
@@ -37,10 +39,40 @@ class CircularLinkedList<T>{
         this.length++;
         return
     }
+
+    printList() {
+        let string = ''
+        let temp = this.head
+        for (let i = 0; i < this.length; i++) {
+            if(i+1 === this.length){
+                string += `${temp.value}`
+            }else{
+                string += `${temp.value} -> `
+            }
+            temp = temp.next
+        }
+        string+='\n↑ '
+        for (let i = 0; i < this.length; i++) {
+            if(i === 0){
+                string += '<- '
+            } else if(i+1 !== this.length){
+                string += '  <- '
+            }
+        }
+        string += '↓'
+        console.log(string)
+        return string
+    }
 }
 
 const circularLinkedList = new CircularLinkedList<number>(1)
-// circularLinkedList.prepend(0)
-// circularLinkedList.append(2)
-console.log(circularLinkedList)
+circularLinkedList.prepend(0)
+circularLinkedList.append(2)
+circularLinkedList.append(3)
+circularLinkedList.append(4)
+circularLinkedList.append(5)
+circularLinkedList.append(6)
+circularLinkedList.append(7)
+circularLinkedList.printList()
+// console.log(circularLinkedList.tail)
 // console.log(circularLinkedList.head === circularLinkedList.tail)
