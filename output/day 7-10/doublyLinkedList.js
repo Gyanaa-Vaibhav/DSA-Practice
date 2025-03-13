@@ -1,5 +1,5 @@
 // @ts-ignore
-class NodePointer {
+class NodePointerDoubly {
     constructor(value) {
         this.prev = null;
         this.next = null;
@@ -14,13 +14,13 @@ class doublyLinkedList {
         if (value === undefined) {
             return;
         }
-        const newNode = new NodePointer(value);
+        const newNode = new NodePointerDoubly(value);
         this.tail = newNode;
         this.head = newNode;
         this.length++;
     }
     insertAtHead(value) {
-        const newNode = new NodePointer(value);
+        const newNode = new NodePointerDoubly(value);
         if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
@@ -37,7 +37,7 @@ class doublyLinkedList {
         if (this.length === 0) {
             return this.insertAtHead(value);
         }
-        const newNode = new NodePointer(value);
+        const newNode = new NodePointerDoubly(value);
         this.tail.next = newNode;
         newNode.prev = this.tail;
         this.tail = newNode;
@@ -123,7 +123,7 @@ class doublyLinkedList {
             return this.insertAtHead(value);
         if (index === this.length)
             return this.insertAtTail(value);
-        const newNode = new NodePointer(value);
+        const newNode = new NodePointerDoubly(value);
         const before = this.get(index - 1);
         const after = before.next;
         before.next = newNode;

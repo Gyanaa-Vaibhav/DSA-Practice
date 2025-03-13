@@ -275,6 +275,55 @@ class LinkedList<T>{
             temp = after // Moving pointer to after +1 step
         }
     }
+
+    // Fast and Slow Pointers
+    // 1️⃣ hasCycle() → Detect if a cycle exists.
+    hasCycle() {
+        let slowPointer = this.head
+        let fastPointer = this.head
+
+        while(fastPointer !== null){
+            slowPointer = slowPointer?.next
+            fastPointer = fastPointer?.next?.next || null
+            if(slowPointer === fastPointer) return true
+        }
+
+        return false
+    }
+
+    // 2️⃣ findMiddleNode() → Return the middle node.
+    findMiddleNode() {
+        let slowPointer = this.head
+        let fastPointer = this.head
+        while(fastPointer !== null){
+            slowPointer = slowPointer?.next
+            fastPointer = fastPointer?.next?.next || null
+        }
+
+        return slowPointer
+    }
+
+    // 3️⃣ findCycleStart() → If there’s a cycle, return the node where it starts.
+    findCycleStart() {
+        let slowPointer = this.head
+        let fastPointer = this.head
+
+        while(fastPointer !== null){
+            slowPointer = slowPointer?.next
+            fastPointer = fastPointer?.next?.next || null
+            if(slowPointer === fastPointer){
+                slowPointer = this.head
+
+                while(slowPointer !== fastPointer){
+                    slowPointer = slowPointer.next
+                    fastPointer = fastPointer.next
+                }
+
+                return slowPointer
+            }
+        }
+        return null
+    }
 }
 
 const linkedList = new LinkedList<number>(1)
@@ -282,6 +331,11 @@ linkedList.prepend(0)
 linkedList.append(2)
 linkedList.append(3)
 linkedList.append(4)
+linkedList.append(5)
+console.log(linkedList.hasCycle())
+console.log(linkedList.findCycleStart())
+// console.log(linkedList.findMiddleNode())
+// linkedList.printList()
 // linkedList.setValue(1,3)
 // linkedList.reverse()
 // linkedList.printList()

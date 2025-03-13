@@ -15,7 +15,7 @@
 
 ### **Week 2: Problem-Solving Boost (7 Days)**
 
-**Day 8-9:** Linked List + Fast/Slow Pointers (Learn + 40 problems)
+**Day 8-9:** Linked List + Fast/Slow Pointers (Learn + 20 problems) **(DONE ✅/ Need to revise)**
 
 **Day 10-11:** Recursion Basics + Backtracking Intro (Learn + 40 problems)
 

@@ -1,8 +1,8 @@
 // @ts-ignore
-class NodePointer<T>{
-    prev: NodePointer<T> | null = null;
+class NodePointerDoubly<T>{
+    prev: NodePointerDoubly<T> | null = null;
     value: T;
-    next: NodePointer<T> | null = null;
+    next: NodePointerDoubly<T> | null = null;
 
     constructor(value:T) {
         this.value = value;
@@ -10,22 +10,22 @@ class NodePointer<T>{
 }
 
 class doublyLinkedList<T>{
-    head:NodePointer<T> | null = null
-    tail: NodePointer<T | null> = null
+    head:NodePointerDoubly<T> = null
+    tail: NodePointerDoubly<T> = null
     length:number = 0
 
     constructor(value?:T) {
         if(value === undefined){
             return
         }
-        const newNode = new NodePointer<T>(value)
+        const newNode = new NodePointerDoubly<T>(value)
         this.tail = newNode
         this.head = newNode
         this.length++
     }
 
     insertAtHead(value:T) {
-        const newNode = new NodePointer<T>(value)
+        const newNode = new NodePointerDoubly<T>(value)
         if(this.length === 0){
             this.head = newNode
             this.tail = newNode
@@ -43,7 +43,7 @@ class doublyLinkedList<T>{
         if(this.length === 0){
             return this.insertAtHead(value)
         }
-        const newNode = new NodePointer<T>(value)
+        const newNode = new NodePointerDoubly<T>(value)
         this.tail.next = newNode
         newNode.prev = this.tail
         this.tail = newNode
@@ -129,7 +129,7 @@ class doublyLinkedList<T>{
         if(index === 0) return this.insertAtHead(value)
         if(index === this.length) return this.insertAtTail(value)
 
-        const newNode = new NodePointer<T>(value)
+        const newNode = new NodePointerDoubly<T>(value)
         const before = this.get(index-1)
         const after = before.next
         before.next = newNode;
