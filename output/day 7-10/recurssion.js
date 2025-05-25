@@ -13,12 +13,12 @@ function sumOfDigitsUsingRecursion(n) {
 }
 // console.log(sumOfDigitsUsingRecursion(123))
 // 4️⃣ Reverse a String using Recursion → "hello" → "olleh"
-function reverseString(s) {
+function reverseStringFactorial(s) {
     if (s.length === 1)
         return s;
-    return s.slice(-1) + reverseString(s.slice(0, -1));
+    return s.slice(-1) + reverseStringFactorial(s.slice(0, -1));
 }
-console.log(reverseString('hello'));
+console.log(reverseStringFactorial('hello'));
 // 5️⃣ Check if a Number is Palindrome using Recursion
 function checkPalindrome(s) {
     if (s.length <= 1)
