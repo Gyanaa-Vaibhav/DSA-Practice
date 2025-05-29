@@ -11,28 +11,23 @@ class LinkedListNew {
         if (value) {
             const node = new NodePointerNew(value);
             this.head = node;
+            this.tail = node;
         }
         else {
             console.log("Initializing Empty Constructor");
         }
     }
     prepend(value) {
-        // const temp = this.head
         const node = new NodePointerNew(value);
         node.next = this.head;
         this.head = node;
         return value;
     }
     append(value) {
-        let temp = this.head;
-        while (temp) {
-            if (!temp.next) {
-                const node = new NodePointerNew(value);
-                temp.next = node;
-                return value;
-            }
-            temp = temp.next;
-        }
+        const node = new NodePointerNew(value);
+        this.tail.next = node;
+        this.tail = node;
+        return value;
     }
     printLinkedList() {
         let temp = this.head;
@@ -63,42 +58,43 @@ class LinkedListNew {
         }
         return false;
     }
+    insert(index, value) {
+        if (index === 0)
+            return this.prepend(value);
+        let prev = null;
+        let temp = this.head;
+        let length = 0;
+        while (temp) {
+            if (length === index) {
+                const newNode = new NodePointerNew(value);
+                prev.next = newNode;
+                newNode.next = temp;
+                return;
+            }
+            prev = temp;
+            temp = temp.next;
+            length++;
+        }
+        throw new Error(`Index Mismatch please make sure the length in under ${this.getLength()}`);
+    }
+    getLength() {
+        let length = 0;
+        let temp = this.head;
+        while (temp) {
+            length++;
+            temp = temp.next;
+        }
+        return length;
+    }
 }
-const newLinkedList = new LinkedListNew(1);
-// newLinkedList.prepend(2)
-// newLinkedList.prepend(3)
-// newLinkedList.append(4)
+const newLinkedList = new LinkedListNew(3);
+newLinkedList.prepend(2);
+newLinkedList.prepend(1);
+newLinkedList.append(4);
 newLinkedList.append(5);
-// newLinkedList.printLinkedList()
+newLinkedList.insert(4, 4);
+newLinkedList.printLinkedList();
+console.log("Length", newLinkedList.getLength());
 // console.log(newLinkedList.exists(6))
 // console.log(newLinkedList.getIndex(5))
 // console.log(newLinkedList);
-// Definition for singly-linked list.
-class ListNode {
-    constructor(val, next) {
-        this.val = (val === undefined ? 0 : val);
-        this.next = (next === undefined ? null : next);
-    }
-}
-const list1 = new ListNode(1);
-list1.next = new ListNode(2);
-list1.next.next = new ListNode(2);
-list1.next.next.next = new ListNode(5);
-const list2 = new ListNode(1);
-// list2.next = new ListNode(3)
-// list2.next.next = new ListNode(4)
-function deleteDuplicates(head) {
-    let temp = head;
-    while (temp.next) {
-        if (temp.val === temp.next.val) {
-            console.log(temp);
-            temp.next = temp.next.next;
-        }
-        else {
-            temp = temp.next;
-        }
-    }
-    return head;
-}
-;
-console.log(deleteDuplicates(list1));
