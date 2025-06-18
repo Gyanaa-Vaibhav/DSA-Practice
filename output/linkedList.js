@@ -259,7 +259,7 @@ function minimumPairRemoval(nums) {
         console.log("Adding Num");
         num++;
     }
-    return [num, head];
+    return num;
 }
 ;
 // console.log(minimumPairRemoval([0]))
@@ -268,7 +268,3 @@ function minimumPairRemoval(nums) {
 // console.log(minimumPairRemoval([1,2,5,4,3]))
 // console.log(minimumPairRemoval([11, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
 console.log(minimumPairRemoval([5, 4, 3, 2, 1]));
-// [5, 4, 3, 2, 1]
-// [5, 7 , 2, 1] Step 1
-// [5, 7, 3] Step 2
-// [5,10] Step 3
