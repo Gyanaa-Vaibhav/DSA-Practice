@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedList = void 0;
 // @ts-ignore
 class NodePointer {
     constructor(value) {
@@ -67,7 +70,7 @@ class LinkedList {
             return this.resetList();
         }
         let removedValue;
-        removedValue = this.head.value;
+        removedValue = this.head;
         this.head = this.head.next;
         this.length--;
         return removedValue;
@@ -80,7 +83,7 @@ class LinkedList {
      * @returns {T | undefined} The removed value, or undefined if the list is empty.
      */
     removeTail() {
-        var _a, _b;
+        var _a;
         if (this.length === 0)
             return;
         if (this.length === 1) {
@@ -90,7 +93,7 @@ class LinkedList {
         let temp = this.head;
         while (((_a = temp === null || temp === void 0 ? void 0 : temp.next) === null || _a === void 0 ? void 0 : _a.next) !== null) {
             temp = temp.next;
-            removedValue = (_b = temp === null || temp === void 0 ? void 0 : temp.next) === null || _b === void 0 ? void 0 : _b.value;
+            removedValue = temp === null || temp === void 0 ? void 0 : temp.next;
         }
         temp.next = null;
         this.tail = temp;
@@ -133,7 +136,7 @@ class LinkedList {
         }
     }
     resetList() {
-        let removedValue = this.head.value;
+        let removedValue = this.head;
         this.head = null;
         this.tail = null;
         this.length--;
@@ -188,7 +191,6 @@ class LinkedList {
         return this.head.value;
     }
     getFullList() {
-        // console.log(this.head)
         return this.head;
     }
     /**
@@ -196,7 +198,6 @@ class LinkedList {
      * returns the value of the head
      * */
     getTail() {
-        console.log(this.tail);
         return this.tail;
     }
     /**
@@ -204,7 +205,6 @@ class LinkedList {
      * returns the length of the LinkedList
      * */
     getLength() {
-        // console.log(`Length: ${this.length}`)
         return this.length;
     }
     printList() {
@@ -302,14 +302,15 @@ class LinkedList {
         return null;
     }
 }
+exports.LinkedList = LinkedList;
 const linkedList = new LinkedList(1);
 linkedList.prepend(0);
 linkedList.append(2);
 linkedList.append(3);
 linkedList.append(4);
 linkedList.append(5);
-console.log(linkedList.hasCycle());
-console.log(linkedList.findCycleStart());
+// console.log(linkedList.hasCycle())
+// console.log(linkedList.findCycleStart())
 // console.log(linkedList.findMiddleNode())
 // linkedList.printList()
 // linkedList.setValue(1,3)

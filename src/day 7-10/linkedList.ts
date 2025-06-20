@@ -13,7 +13,7 @@ class NodePointer<T>{
     }
 }
 
-class LinkedList<T>{
+export class LinkedList<T>{
     head: NodePointer<T | null> = null
     tail: NodePointer<T | null> = null
     length:number = 0
@@ -72,13 +72,13 @@ class LinkedList<T>{
      *
      * @returns {T | undefined} The removed value, or undefined if the list is empty.
      */
-    removeHead(): T | undefined {
+    removeHead(): NodePointer<T> | undefined {
         if(this.length === 0) return;
         if(this.length === 1){
             return this.resetList()
         }
-        let removedValue:T
-        removedValue = this.head.value
+        let removedValue: NodePointer<T>
+        removedValue = this.head
         this.head = this.head.next;
         this.length--;
         return removedValue
@@ -91,17 +91,17 @@ class LinkedList<T>{
      *
      * @returns {T | undefined} The removed value, or undefined if the list is empty.
      */
-    removeTail(): T | undefined {
+    removeTail(): NodePointer<T> | undefined {
         if(this.length === 0) return;
         if(this.length === 1){
             return this.resetList()
         }
 
-        let removedValue:T
+        let removedValue: NodePointer<T>
         let temp = this.head
         while (temp?.next?.next !== null) {
             temp = temp.next;
-            removedValue = temp?.next?.value
+            removedValue = temp?.next
         }
         temp!.next = null;
         this.tail = temp;
@@ -144,8 +144,8 @@ class LinkedList<T>{
         }
     }
 
-    private resetList() {
-        let removedValue = this.head.value
+    private resetList(): NodePointer<T> {
+        let removedValue = this.head
         this.head = null
         this.tail = null
         this.length--;
@@ -202,7 +202,6 @@ class LinkedList<T>{
     }
 
     getFullList() {
-        // console.log(this.head)
         return this.head
     }
 
@@ -211,7 +210,6 @@ class LinkedList<T>{
      * returns the value of the head
      * */
     getTail() {
-        console.log(this.tail)
         return this.tail
     }
 
@@ -220,7 +218,6 @@ class LinkedList<T>{
      * returns the length of the LinkedList
      * */
     getLength() {
-        // console.log(`Length: ${this.length}`)
         return this.length
     }
 
@@ -332,8 +329,8 @@ linkedList.append(2)
 linkedList.append(3)
 linkedList.append(4)
 linkedList.append(5)
-console.log(linkedList.hasCycle())
-console.log(linkedList.findCycleStart())
+// console.log(linkedList.hasCycle())
+// console.log(linkedList.findCycleStart())
 // console.log(linkedList.findMiddleNode())
 // linkedList.printList()
 // linkedList.setValue(1,3)
