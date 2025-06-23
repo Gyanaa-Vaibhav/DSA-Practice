@@ -41,12 +41,12 @@ class MaxBinaryHeap{
         this.swap(0, this.values.length - 1);
         const removedValue = this.values.pop();
         
-        this.bubbleUP(0)
+        this.sinkDown(0)
         
         return removedValue
     }
 
-    public bubbleUP(index) {
+    public sinkDown(index) {
         let maxIndex = index
         while (true) {
             let leftIndex = this.leftChild(index)
