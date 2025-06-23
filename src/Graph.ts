@@ -1,0 +1,47 @@
+class Graph{
+    private adjacencyList = {};
+
+    constructor() {
+        this.adjacencyList = {};
+    }
+
+    public addVertex(vertex):boolean {
+        if (!this.adjacencyList[vertex]) {
+            this.adjacencyList[vertex] = [];
+            return true
+        }
+        return false
+    }
+
+    public addEdge(v1, v2) {
+        const vertex = this.adjacencyList[v1]
+        vertex.push(v2)
+
+        const vertex2 = this.adjacencyList[v2]
+        vertex2.push(v1)
+    }
+
+    public removeEdge(v1, v2) {
+        this.adjacencyList[v1] = this.adjacencyList[v1].filter(v => v !== v2)
+        this.adjacencyList[v2] = this.adjacencyList[v2].filter(v => v !== v1)
+    }
+
+    public removeVertex(vertex) {
+        this.adjacencyList[vertex].map(edge => {
+            this.removeEdge(vertex,edge)
+        })
+        delete this.adjacencyList[vertex]
+    }
+}
+
+const graph = new Graph()
+graph.addVertex("Tokyo")
+graph.addVertex("London")
+graph.addEdge("Tokyo","London")
+graph.addVertex("SanFrancisco")
+graph.addEdge("SanFrancisco", "London")
+graph.removeVertex("SanFrancisco")
+// console.log(graph);
+// graph.removeEdge("SanFrancisco","London")
+console.log(graph);
+

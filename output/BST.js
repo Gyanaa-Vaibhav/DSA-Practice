@@ -158,6 +158,23 @@ class BinarySearchTree {
         this.DFS_In_Order_Recursive(this.root, array);
         return array;
     }
+    BFSAgain() {
+        const queue = [];
+        const ansArray = [];
+        let root = this.root;
+        queue.push(root);
+        while (queue.length > 0) {
+            const temp = queue.shift();
+            ansArray.push(temp.value);
+            if (temp.left) {
+                queue.push(temp.left);
+            }
+            if (temp.right) {
+                queue.push(temp.right);
+            }
+        }
+        return ansArray;
+    }
 }
 const BST = new BinarySearchTree();
 // BST.insertRecursive(9)
@@ -177,9 +194,10 @@ BST.insertRecursive(8);
 BST.insertRecursive(20);
 // console.log("BFS");
 // console.log(BST.BFS());
-console.log(BST.DFS_Pre_Order());
-console.log(BST.DFS_POST_ORDER());
-console.log(BST.DFS_In_Order());
+// console.log(BST.DFS_Pre_Order());
+// console.log(BST.DFS_POST_ORDER());
+// console.log(BST.DFS_In_Order());
 // console.log("BST",BST);
 // console.log("Normal",BST.contain(10));
 // console.log("minValue",BST.miniumValueRecursive());
+console.log(BST.BFSAgain());
