@@ -32,16 +32,90 @@ class Graph{
         })
         delete this.adjacencyList[vertex]
     }
+
+    public DFS(vertex) {
+        const visited = {};
+        const result = [];
+        this.DFS_Recursive(vertex, visited, result)
+        return result
+    }
+
+    private DFS_Recursive(vertex, visited, result) {
+        result.push(vertex)
+        if (this.adjacencyList[vertex]) {
+            visited[vertex] = true;
+            this.adjacencyList[vertex].forEach(edge => {
+                if (!visited[edge]) {
+                    this.DFS_Recursive(edge, visited, result);
+                }
+            })
+        }
+        return
+    }
+
+    public DFS_Iterative(vertex) {
+        const result = [];
+        const visited = {};
+        const stack = [];
+        stack.push(vertex)
+
+        while (stack.length > 0) {
+            const v = stack.pop();
+            if (!visited[v]) {
+                visited[v] = true;
+                result.push(v)
+                this.adjacencyList[v].map(edge => {
+                    if (!visited[edge]) {
+                        stack.push(edge)
+                    }
+                })
+            }
+        }
+
+        return result;
+    }
+
+    public BFS(vertex) {
+        const result = [];
+        const visited = {};
+        const stack = [];
+        stack.push(vertex)
+
+        while (stack.length > 0) {
+            const v = stack.shift();
+            if (!visited[v]) {
+                visited[v] = true;
+                result.push(v)
+                this.adjacencyList[v].map(edge => {
+                    if (!visited[edge]) {
+                        stack.push(edge)
+                    }
+                })
+            }
+        }
+
+        return result;
+    }
 }
 
 const graph = new Graph()
-graph.addVertex("Tokyo")
-graph.addVertex("London")
-graph.addEdge("Tokyo","London")
-graph.addVertex("SanFrancisco")
-graph.addEdge("SanFrancisco", "London")
-graph.removeVertex("SanFrancisco")
+graph.addVertex("A")
+graph.addVertex("B")
+graph.addVertex("C")
+graph.addVertex("D")
+graph.addVertex("E")
+graph.addVertex("F")
+graph.addEdge("A", "B")
+graph.addEdge("A", "C")
+graph.addEdge("B", "D")
+graph.addEdge("C", "E")
+graph.addEdge("D", "E")
+graph.addEdge("D", "F")
+graph.addEdge("F", "E")
 // console.log(graph);
 // graph.removeEdge("SanFrancisco","London")
-console.log(graph);
+// console.log(graph);
+console.log(graph.DFS("A"));
+console.log(graph.DFS_Iterative("A"));
+console.log(graph.BFS("A"));
 
