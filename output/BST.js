@@ -42,7 +42,7 @@ class BinarySearchTree {
         let temp = this.root;
         while (temp !== null) {
             if (value === temp.value)
-                return true;
+                return temp;
             if (value > temp.value) {
                 temp = temp.right;
             }
@@ -97,7 +97,7 @@ class BinarySearchTree {
     }
     miniumValueRecursive(node = this.root) {
         if (node.left === null)
-            return node.value;
+            return node;
         return this.miniumValueRecursive(node.left);
     }
     BFS() {
@@ -175,6 +175,32 @@ class BinarySearchTree {
         }
         return ansArray;
     }
+    deleteNode(value, node = this.root) {
+        if (node === null)
+            return null;
+        if (value < node.value) {
+            node.left = this.deleteNode(value, node.left);
+        }
+        else if (value > node.value) {
+            node.right = this.deleteNode(value, node.right);
+        }
+        else {
+            if (node.left === null && node.right === null) {
+                return null;
+            }
+            else if (node.left === null && node.right !== null) {
+                return node.right;
+            }
+            else if (node.left !== null && node.right === null) {
+                return node.left;
+            }
+            else {
+                node.value = this.miniumValueRecursive(node.right).value;
+                node.right = this.deleteNode(node.value, node.right);
+            }
+        }
+        return node;
+    }
 }
 const BST = new BinarySearchTree();
 // BST.insertRecursive(9)
@@ -201,3 +227,7 @@ BST.insertRecursive(20);
 // console.log("Normal",BST.contain(10));
 // console.log("minValue",BST.miniumValueRecursive());
 console.log(BST.BFSAgain());
+console.log(BST.deleteNode(10));
+console.log(BST.BFSAgain());
+// console.log(BST.contain(8));
+// [10, 6, 15, 3, 8, 20]

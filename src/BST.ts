@@ -40,10 +40,10 @@ class BinarySearchTree<T> {
         }
     }
 
-    public contain(value: T): boolean {
+    public contain(value: T): boolean | TreeNode<T> {
         let temp = this.root;
         while (temp !== null) {
-            if (value === temp.value) return true
+            if (value === temp.value) return temp
             if (value > temp.value) {
                 temp = temp.right
             } else {
@@ -87,8 +87,8 @@ class BinarySearchTree<T> {
         else return this.insertRecursive2(value, node.left);
     }
 
-    public miniumValueRecursive(node: TreeNode<T> | null = this.root) {
-        if (node.left === null) return node.value
+    public miniumValueRecursive(node: TreeNode<T> | null = this.root): TreeNode<T> {
+        if (node.left === null) return node
         return this.miniumValueRecursive(node.left)
     }
 
@@ -170,6 +170,28 @@ class BinarySearchTree<T> {
         return ansArray
 
     }
+
+    public deleteNode(value, node = this.root) {
+        if (node === null) return null;
+        if (value < node.value) {
+            node.left = this.deleteNode(value, node.left)
+        } else if (value > node.value) {
+            node.right = this.deleteNode(value, node.right)
+        } else {
+            if (node.left === null && node.right === null) {
+                return null;
+            } else if (node.left === null && node.right !== null) {
+                return node.right
+            } else if (node.left !== null && node.right === null) {
+                return node.left
+            } else {
+                node.value = this.miniumValueRecursive(node.right).value
+                node.right = this.deleteNode(node.value, node.right)
+            }
+        }
+        
+        return node
+    }
 }
 
 const BST = new BinarySearchTree<number>();
@@ -200,4 +222,7 @@ BST.insertRecursive(20)
 // console.log("minValue",BST.miniumValueRecursive());
 
 console.log(BST.BFSAgain());
-
+console.log(BST.deleteNode(10));
+console.log(BST.BFSAgain());
+// console.log(BST.contain(8));
+// [10, 6, 15, 3, 8, 20]
